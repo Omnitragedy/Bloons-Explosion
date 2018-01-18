@@ -19,4 +19,12 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    public boolean getNitn(boolean sdf){
+        if (sdf){
+            return true;
+        }
+        return false;
+    }
+
+
 }
