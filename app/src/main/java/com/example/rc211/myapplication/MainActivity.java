@@ -27,4 +27,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public boolean getShg(boolean sdf){
+        if (sdf){
+            return true;
+        }
+        return false;
+    }
+
 }
