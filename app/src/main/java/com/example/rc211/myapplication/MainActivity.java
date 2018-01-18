@@ -12,33 +12,5 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("blah");
     }
 
-    public boolean getAlec(boolean work){
-        if (work){
-            return true;
-        }
-        return false;
-    }
-
-    public boolean getNitn(boolean sdf){
-        if (sdf){
-            return true;
-        }
-        return false;
-    }
-
-
-    public boolean getShg(boolean sdf){
-        if (sdf){
-            return true;
-        }
-        return false;
-    }
-
-
-    public boolean getSvhjh(boolean sdf){
-        if (sdf){
-            return true;
-        }
-        return false;
-    }
+    
 }
