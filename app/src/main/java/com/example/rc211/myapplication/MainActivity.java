@@ -34,4 +34,11 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+
+    public boolean getSvhjh(boolean sdf){
+        if (sdf){
+            return true;
+        }
+        return false;
+    }
 }
