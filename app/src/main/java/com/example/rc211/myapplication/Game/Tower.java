@@ -6,16 +6,16 @@ package com.example.rc211.myapplication.Game;
 
 public class Tower {
 
-    int bullets;
-    int cost;
-    int type;
+    public static Bullet bullet;
+    public static int cost;
+    public static int type;
 
-    public Tower(int bullets, int cost, int type){
-        this.bullets = bullets;
+    public Tower(Bullet bullet, int cost, int type){
+
         this.cost = cost;
         this.type = type;
     }
 
-    
+
 
 }
