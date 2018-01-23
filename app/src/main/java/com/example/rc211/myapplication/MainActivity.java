@@ -16,10 +16,7 @@ public class MainActivity extends Activity {
 
 
 
-    public void onGameBegin(View view) {
-        Intent myIntent = new Intent(view.getContext(), GameScreenActivity.class);
-        startActivityForResult(myIntent, 0);
-    }
+
 
 
     
