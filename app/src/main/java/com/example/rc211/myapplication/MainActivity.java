@@ -23,10 +23,6 @@ public class MainActivity extends AppCompatActivity {
         mHandler = new Handler();
     }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-        
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
