@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.rc211.myapplication.Game.GameEventScheduler;
+
 public class MainActivity extends AppCompatActivity {
 
     private ProgressBar mProgressBar;
@@ -14,12 +16,24 @@ public class MainActivity extends AppCompatActivity {
 
     private int mStatus = 100;
 
-    private Handler mHandler = new Handler();
+    private Handler mHandler;
+    private GameEventScheduler gamehandler;
+
+    public MainActivity() {
+        mHandler = new Handler();
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        gamehandler = new GameEventScheduler();
 
         mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
         mLoadingText = (TextView) findViewById(R.id.LoadingCompleteTextView);
