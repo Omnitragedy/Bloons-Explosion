@@ -20,12 +20,16 @@ public class GameEventScheduler {
     private static int tempEnemiesCount;        //used to simply store how many enemies have been spawned in a single
                                                 //call of the scheduleAndRunEnemySpawn method
 
-    public GameEventScheduler() throws ClassNotFoundException {
+    public GameEventScheduler() {
         enemies = new ArrayList<>();
 
         typeToSpecificEnemyMap = new HashMap<>();
         for(EnemyTypes e : EnemyTypes.values()) {
-            typeToSpecificEnemyMap.put(e, Class.forName(e.name())); //mapping from enum value of enemy to class
+            try {
+                typeToSpecificEnemyMap.put(e, Class.forName(e.name())); //mapping from enum value of enemy to class
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
         }
 
         tempEnemiesCount = 0;

@@ -7,5 +7,5 @@ import com.example.rc211.myapplication.Enemy.Specialized_Enemies.Grunt;
  */
 
 public enum EnemyTypes {
-    GRUNT
+    Grunt
 }
