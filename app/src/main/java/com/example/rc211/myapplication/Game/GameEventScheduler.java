@@ -4,6 +4,8 @@ import com.example.rc211.myapplication.Enemy.EnemyTypes;
 import com.example.rc211.myapplication.Enemy.GenericEnemy;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Timer;
 import java.util.TimerTask;
 
 /**
@@ -13,25 +15,53 @@ import java.util.TimerTask;
 public class GameEventScheduler {
 
     private ArrayList<GenericEnemy> enemies;
+    private HashMap<EnemyTypes, Class> typeToSpecificEnemyMap;
 
-    public GameEventScheduler() {
+    private static int tempEnemiesCount;        //used to simply store how many enemies have been spawned in a single
+                                                //call of the scheduleAndRunEnemySpawn method
+
+    public GameEventScheduler() throws ClassNotFoundException {
         enemies = new ArrayList<>();
+
+        typeToSpecificEnemyMap = new HashMap<>();
+        for(EnemyTypes e : EnemyTypes.values()) {
+            typeToSpecificEnemyMap.put(e, Class.forName(e.name())); //mapping from enum value of enemy to class
+        }
+
+        tempEnemiesCount = 0;
+
     }
 
 
 
     /**
      * Set how many enemies to spawn and the time interval between each of them
-     * @param numOfEnemies
-     * @param intervalBetweenSpawn
+     * @param numOfEnemies number of enemies to spawn
+     * @param intervalBetweenSpawn interval in ms
      */
-    public void scheduleAndRunEnemySpawn(int numOfEnemies, float intervalBetweenSpawn, EnemyTypes enemytype) {
-        TimerTask addEnemyTask = new TimerTask() {
+    private void scheduleAndRunEnemySpawn(final int numOfEnemies, int intervalBetweenSpawn, EnemyTypes enemytype) {
+        final Class typeOfEnemyToSpawn = typeToSpecificEnemyMap.get(enemytype);
+
+
+
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+
             @Override
             public void run() {
-                enemies.add(new GenericEnemy());
+                tempEnemiesCount++;
+                if(tempEnemiesCount > numOfEnemies) {
+                    tempEnemiesCount = 0;
+                    timer.cancel();
+                }
+                try {
+                    enemies.add((GenericEnemy)(typeOfEnemyToSpawn.newInstance()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        };
+        }, 0, intervalBetweenSpawn); //second - delay; third - time between each execution
+
     }
 
 
