@@ -4,7 +4,7 @@ package com.example.rc211.myapplication.Tower;
  * Created by rc211 on 1/23/2018.
  */
 
-public class Tower {
+public abstract class Tower {
 
     public static Bullet bullet;
     public static int cost;
