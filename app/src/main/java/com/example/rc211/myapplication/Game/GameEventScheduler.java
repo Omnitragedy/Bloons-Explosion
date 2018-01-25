@@ -40,8 +40,7 @@ public class GameEventScheduler {
      * @param intervalBetweenSpawn interval in ms
      */
     private void scheduleAndRunEnemySpawn(final int numOfEnemies, int intervalBetweenSpawn, EnemyTypes enemytype) {
-        final Class typeOfEnemyToSpawn = typeToSpecificEnemyMap.get(enemytype);
-
+        final Class typeOfEnemyToSpawn = typeToSpecificEnemyMap.get(enemytype); //type of enemy to spawn as class object
 
 
         final Timer timer = new Timer();
@@ -62,6 +61,10 @@ public class GameEventScheduler {
             }
         }, 0, intervalBetweenSpawn); //second - delay; third - time between each execution
 
+    }
+
+    private void scheduleAndRunEnemySpawn(final int numOfEnemies, float intervalBetweenSpawn, EnemyTypes enemytype) {
+        scheduleAndRunEnemySpawn(numOfEnemies, intervalBetweenSpawn*1000, enemytype);
     }
 
 
