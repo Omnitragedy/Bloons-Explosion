@@ -32,7 +32,7 @@ public class EnemyPath {
             }
         } else {
             for(int i = 0; i < xFuncs.size() - 1; i++) {
-                q
+                pathFunctionsList.add(new Parametric(xFuncs.get(i), yFuncs.get(i)));
             }
         }
 
