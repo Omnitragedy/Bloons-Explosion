@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         gamehandler = new GameEventScheduler();
 
-        mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
-        mLoadingText = (TextView) findViewById(R.id.LoadingCompleteTextView);
 
         new Thread(new Runnable() {
             @Override
@@ -84,7 +82,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        return false;
+        System.out.println('s');
+        return true;
     }
 
     public class GameView extends SurfaceView implements Runnable {

@@ -11,8 +11,8 @@ import java.util.function.Function;
 
 public class Parametric {
 
-    Function xFunc;
-    Function yFunc;
+    Function<Float, Float> xFunc;
+    Function<Float, Float> yFunc;
 
     public Parametric(Function<Float, Float> xFunc, Function<Float, Float> yFunc) {
         xFunc = this.xFunc;
