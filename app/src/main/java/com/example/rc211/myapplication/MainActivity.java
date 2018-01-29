@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         new Thread(new Runnable() {
             @Override
-            public void run() {
+            public void run() {         //progress bar code
                 while (mStatus < 101) {
                     mStatus--;
                     android.os.SystemClock.sleep(50);

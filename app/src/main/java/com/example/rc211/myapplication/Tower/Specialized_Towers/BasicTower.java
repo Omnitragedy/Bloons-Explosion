@@ -1,5 +1,6 @@
 package com.example.rc211.myapplication.Tower.Specialized_Towers;
 
+import com.example.rc211.myapplication.Game.Bullet;
 import com.example.rc211.myapplication.Tower.Tower;
 
 /**
