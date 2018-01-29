@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.rc211.myapplication.MainActivity">
 
-    <SurfaceView
-        android:id="@+id/surfaceView"
-        android:layout_width="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="78dp"
+        android:layout_height="77dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/UCP_pattern"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="27dp" />
 </android.support.constraint.ConstraintLayout>

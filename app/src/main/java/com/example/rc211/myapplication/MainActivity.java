@@ -1,6 +1,5 @@
 package com.example.rc211.myapplication;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Handler;
@@ -11,9 +10,14 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.view.View.OnTouchListener;
+import android.widget.RelativeLayout;
+import android.app.Activity;
 
 import com.example.rc211.myapplication.Game.GameEventScheduler;
 
@@ -27,6 +31,11 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     private GameEventScheduler gamehandler;
 
     private GameView gameView;
+
+    private ImageView img;
+    private ViewGroup rootLayout;
+    private int _xDelta;
+    private int _yDelta;
 
     public MainActivity() {
         mHandler = new Handler();
@@ -49,6 +58,12 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
         gamehandler = new GameEventScheduler();
 
+        rootLayout = (ViewGroup) findViewById(R.id.view_root);
+        img = (ImageView) rootLayout.findViewById(R.id.imageView);
+
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(150, 150);
+        img.setLayoutParams(layoutParams);
+        img.setOnTouchListener(new ChoiceTouchListener());
 
 //        new Thread(new Runnable() {
 //            @Override
@@ -95,7 +110,6 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
     public class GameView extends SurfaceView implements Runnable {
 
-
         Thread gvThread;
         SurfaceHolder holder;
         boolean isItOKToDraw = false;
@@ -104,6 +118,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
             super(context);
             holder = super.getHolder();
         }
+
 
 
         @Override
@@ -144,4 +159,37 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
 
     }
+
+
+    private final class ChoiceTouchListener implements OnTouchListener {
+        public boolean onTouch(View view, MotionEvent event){
+            final int X = (int) event.getRawX();
+            final int Y = (int) event.getRawY();
+            switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                case MotionEvent.ACTION_DOWN:
+                    RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+                    _xDelta = X - lParams.leftMargin;
+                    _yDelta = Y - lParams.topMargin;
+                    break;
+                case MotionEvent.ACTION_UP:
+                    break;
+                case MotionEvent.ACTION_POINTER_DOWN:
+                    break;
+                case MotionEvent.ACTION_POINTER_UP:
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+                    layoutParams.leftMargin = X - _xDelta;
+                    layoutParams.topMargin = Y - _yDelta;
+                    layoutParams.rightMargin = -250;
+                    layoutParams.bottomMargin = -250;
+                    view.setLayoutParams(layoutParams);
+                    break;
+            }
+            rootLayout.invalidate();
+            return true;
+        }
+    }
+
+
 }
