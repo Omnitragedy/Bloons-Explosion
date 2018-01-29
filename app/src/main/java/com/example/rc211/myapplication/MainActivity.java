@@ -1,14 +1,17 @@
 package com.example.rc211.myapplication;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -16,10 +19,7 @@ import com.example.rc211.myapplication.Game.GameEventScheduler;
 
 import java.security.spec.ECField;
 
-public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
-
-    private ProgressBar mProgressBar;
-    private TextView mLoadingText;
+public class MainActivity extends Activity implements View.OnTouchListener {
 
     private int mStatus = 100;
 
@@ -36,6 +36,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+///////////////////////////////////////////////////////////////////////////start here
+
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+
+        //making the surfaceview the place to draw
         gameView = new GameView(this);
         gameView.setOnTouchListener(this);
         setContentView(gameView);
@@ -43,27 +50,27 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         gamehandler = new GameEventScheduler();
 
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {         //progress bar code
-                while (mStatus < 101) {
-                    mStatus--;
-                    android.os.SystemClock.sleep(50);
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            mProgressBar.setProgress(mStatus);
-                        }
-                    });
-                }
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mLoadingText.setVisibility(View.VISIBLE);
-                    }
-                });
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {         //progress bar code
+//                while (mStatus < 101) {
+//                    mStatus--;
+//                    android.os.SystemClock.sleep(50);
+//                    mHandler.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            mProgressBar.setProgress(mStatus);
+//                        }
+//                    });
+//                }
+//                mHandler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mLoadingText.setVisibility(View.VISIBLE);
+//                    }
+//                });
+//            }
+//        }).start();
 
 
     }
@@ -88,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     public class GameView extends SurfaceView implements Runnable {
 
+
         Thread gvThread;
         SurfaceHolder holder;
         boolean isItOKToDraw = false;
@@ -96,7 +104,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             super(context);
             holder = super.getHolder();
         }
-
 
 
         @Override
