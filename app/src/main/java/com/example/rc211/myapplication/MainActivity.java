@@ -3,7 +3,6 @@ package com.example.rc211.myapplication;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -14,14 +13,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View.OnTouchListener;
-import android.widget.RelativeLayout;
 import android.app.Activity;
 
 import com.example.rc211.myapplication.Game.GameEventScheduler;
-
-import java.security.spec.ECField;
 
 public class MainActivity extends Activity implements View.OnTouchListener {
 
@@ -33,7 +30,6 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     private GameView gameView;
 
     private ImageView img;
-    private ViewGroup rootLayout;
     private int _xDelta;
     private int _yDelta;
 
@@ -48,21 +44,21 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
 ///////////////////////////////////////////////////////////////////////////start here
 
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        Display display = wm.getDefaultDisplay();
+//        WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
+//        Display display = wm.getDefaultDisplay();
 
-        //making the surfaceview the place to draw
+        //making the surfaceView the place to draw
         gameView = new GameView(this);
         gameView.setOnTouchListener(this);
-        setContentView(gameView);
+        setContentView(R.layout.activity_main);
 
-        gamehandler = new GameEventScheduler();
+        gamehandler = new GameEventScheduler(); //gamehandler will schedule enemy spawns (and other regular events)
 
-        rootLayout = (ViewGroup) findViewById(R.id.view_root);
-        img = (ImageView) rootLayout.findViewById(R.id.imageView);
 
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(150, 150);
-        img.setLayoutParams(layoutParams);
+        img = (ImageView) findViewById(R.id.imageView);
+
+//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(150, 150);
+//        img.setLayoutParams(layoutParams);
         img.setOnTouchListener(new ChoiceTouchListener());
 
 //        new Thread(new Runnable() {
@@ -167,7 +163,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
             final int Y = (int) event.getRawY();
             switch (event.getAction() & MotionEvent.ACTION_MASK) {
                 case MotionEvent.ACTION_DOWN:
-                    RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+                    android.support.constraint.ConstraintLayout.LayoutParams lParams = (android.support.constraint.ConstraintLayout.LayoutParams) (view.getLayoutParams());
                     _xDelta = X - lParams.leftMargin;
                     _yDelta = Y - lParams.topMargin;
                     break;
@@ -178,7 +174,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                 case MotionEvent.ACTION_POINTER_UP:
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+                    android.support.constraint.ConstraintLayout.LayoutParams layoutParams = (android.support.constraint.ConstraintLayout.LayoutParams) (view.getLayoutParams());
                     layoutParams.leftMargin = X - _xDelta;
                     layoutParams.topMargin = Y - _yDelta;
                     layoutParams.rightMargin = -250;
@@ -186,7 +182,6 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                     view.setLayoutParams(layoutParams);
                     break;
             }
-            rootLayout.invalidate();
             return true;
         }
     }
