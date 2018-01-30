@@ -8,9 +8,13 @@ import android.graphics.Bitmap;
 
 public class EnemyBody {
 
-    Bitmap body;
+    private Bitmap body;
 
-    public EnemyBody() {
+    public EnemyBody(Bitmap body) {
+        this.body = body;
+    }
 
+    public Bitmap getBitmapSprite() {
+        return body;
     }
 }

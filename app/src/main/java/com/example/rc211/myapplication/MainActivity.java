@@ -44,8 +44,6 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
 ///////////////////////////////////////////////////////////////////////////start here
 
-//        WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
-//        Display display = wm.getDefaultDisplay();
 
         //making the surfaceView the place to draw
         gameView = new GameView(this);
@@ -57,9 +55,10 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
         img = (ImageView) findViewById(R.id.imageView);
 
-//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(150, 150);
-//        img.setLayoutParams(layoutParams);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(150, 150);
+        img.setLayoutParams(layoutParams);
         img.setOnTouchListener(new ChoiceTouchListener());
+
 
 //        new Thread(new Runnable() {
 //            @Override
@@ -106,7 +105,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
     public class GameView extends SurfaceView implements Runnable {
 
-        Thread gvThread;
+        Thread gvThread = null;
         SurfaceHolder holder;
         boolean isItOKToDraw = false;
 

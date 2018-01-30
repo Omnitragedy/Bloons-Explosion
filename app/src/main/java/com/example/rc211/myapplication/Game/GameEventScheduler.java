@@ -30,6 +30,7 @@ public class GameEventScheduler {
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
+
         }
 
         tempEnemiesCount = 0;
