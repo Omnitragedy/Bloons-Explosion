@@ -4,9 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.widget.ProgressBar;
 
-import com.example.rc211.myapplication.Enemy.EnemyUIElements.EnemyBody;
-import com.example.rc211.myapplication.Enemy.EnemyUIElements.EnemyProgressBar;
 import com.example.rc211.myapplication.MainActivity;
+import com.example.rc211.myapplication.Sprite.Sprite;
 
 /**
  * Created by Saurav on 1/23/2018.
@@ -15,13 +14,21 @@ import com.example.rc211.myapplication.MainActivity;
 public abstract class GenericEnemy {
 
     private ProgressBar enemyProgressBar;
-    private EnemyBody enemyBody;
 
     private int x, y;
+    private int width, height;
 
-    public GenericEnemy(Context context, int x, int y) {
+    private Sprite enemySprite;
+
+    public GenericEnemy(MainActivity.GameView gameView, Context context, int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = height;
+
+
+        enemySprite = new Sprite(gameView, getBitmapSprite(), x, y, width, height);
+
 
         enemyProgressBar = new ProgressBar(context);
     }
@@ -42,6 +49,7 @@ public abstract class GenericEnemy {
 
         //change enemy location code
 
+
     }
 
     /**
@@ -50,10 +58,8 @@ public abstract class GenericEnemy {
     public abstract void setEnemyBody();
 
     /**
-     * Return the data for everything that needs to be drawn for an enemy on the screen
+     * Return the data for enemy's sprite
      * @return enemy sprite
      */
-    public Bitmap getBitmapSprite() {
-        return enemyBody.getBitmapSprite();
-    }
+    public abstract Bitmap getBitmapSprite();
 }

@@ -1,5 +1,6 @@
 package com.example.rc211.myapplication.Enemy.Specialized_Enemies;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.example.rc211.myapplication.Enemy.GenericEnemy;
@@ -11,8 +12,8 @@ import com.example.rc211.myapplication.Enemy.GenericEnemy;
 public class Grunt extends GenericEnemy{
 
 
-    public Grunt(int x, int y) {
-        super(x, y);
+    public Grunt(Context context, int x, int y) {
+        super(context, x, y);
     }
 
     @Override

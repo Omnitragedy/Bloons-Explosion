@@ -1,5 +1,6 @@
 package com.example.rc211.myapplication;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Handler;
@@ -18,9 +19,10 @@ import android.widget.TextView;
 import android.view.View.OnTouchListener;
 
 
-
-
+import com.example.rc211.myapplication.Enemy.GenericEnemy;
 import com.example.rc211.myapplication.Game.GameEventScheduler;
+
+import java.util.ArrayList;
 
 public class MainActivity extends Activity implements View.OnTouchListener {
 
@@ -35,10 +37,11 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     private int _xDelta;
     private int _yDelta;
     private ProgressBar progressBar;
-    private MyProgressBar pb;
     private int progressStatus = 0;
     private ImageView ImageView;
     private Handler handler = new Handler();
+
+    private ArrayList<GenericEnemy> enemiesList;
 
     public MainActivity() {
         mHandler = new Handler();
@@ -49,8 +52,6 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-///////////////////////////////////////////////////////////////////////////start here
-
 
         //making the surfaceView the place to draw
         gameView = new GameView(this);
@@ -58,6 +59,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         setContentView(R.layout.activity_main);
 
         gamehandler = new GameEventScheduler(); //gamehandler will schedule enemy spawns (and other regular events)
+        enemiesList = gamehandler.getEnemiesList(); //assigns reference of the enemies list from the gameHandler to this object
 
 
         img = (ImageView) findViewById(R.id.imageView);
@@ -113,6 +115,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
                 Canvas canvas = holder.lockCanvas();
                 canvas.drawARGB(255, 91,192,222);
+                gamehandler.update();
                 holder.unlockCanvasAndPost(canvas);
             }
         }

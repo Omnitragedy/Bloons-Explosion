@@ -69,7 +69,7 @@ public class GameEventScheduler {
     }
 
     private void scheduleAndRunEnemySpawn(final int numOfEnemies, float intervalBetweenSpawn, EnemyTypes enemytype) {
-        scheduleAndRunEnemySpawn(numOfEnemies, intervalBetweenSpawn*1000, enemytype);
+        scheduleAndRunEnemySpawn(numOfEnemies, intervalBetweenSpawn*1000, enemytype);   //////needs to be fixed
     }
 
 
@@ -79,5 +79,9 @@ public class GameEventScheduler {
      */
     public ArrayList<GenericEnemy> getEnemiesList() {
         return enemies;
+    }
+
+    public void update() {
+
     }
 }
