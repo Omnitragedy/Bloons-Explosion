@@ -63,7 +63,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         img = (ImageView) findViewById(R.id.imageView);
 
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(150, 150);
-        img.setLayoutParams(layoutParams);
+//        img.setLayoutParams(layoutParams);
         img.setOnTouchListener(new ChoiceTouchListener());
 
 
