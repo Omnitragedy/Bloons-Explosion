@@ -16,7 +16,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View.OnTouchListener;
-import android.app.Activity;
+
+
+
 
 import com.example.rc211.myapplication.Game.GameEventScheduler;
 
@@ -32,6 +34,11 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     private ImageView img;
     private int _xDelta;
     private int _yDelta;
+    private ProgressBar progressBar;
+    private MyProgressBar pb;
+    private int progressStatus = 0;
+    private ImageView ImageView;
+    private Handler handler = new Handler();
 
     public MainActivity() {
         mHandler = new Handler();
@@ -60,27 +67,6 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         img.setOnTouchListener(new ChoiceTouchListener());
 
 
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {         //progress bar code
-//                while (mStatus < 101) {
-//                    mStatus--;
-//                    android.os.SystemClock.sleep(50);
-//                    mHandler.post(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            mProgressBar.setProgress(mStatus);
-//                        }
-//                    });
-//                }
-//                mHandler.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        mLoadingText.setVisibility(View.VISIBLE);
-//                    }
-//                });
-//            }
-//        }).start();
 
 
     }
