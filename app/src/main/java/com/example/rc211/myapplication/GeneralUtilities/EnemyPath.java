@@ -13,28 +13,34 @@ public class EnemyPath {
 
     private float initX;
     private float initY;
-    private Parametric pathFunctionsList;
+    private ArrayList<Parametric> pathFunctionsList;
 
     /**
      * Make path in terms of a function. Converts provided function into parametric curve
      * @param initX starting x-coord
      * @param initY starting y-coord
      */
-    public EnemyPath(float initX, float initY, Function<Float,Float> xFunc, Function<Float,Float> yFunc) {
+    public EnemyPath(float initX, float initY, ArrayList<Function<Float,Float>> xFuncs, ArrayList<Function<Float,Float>> yFuncs) {
         this.initX = initX;
         this.initY = initY;
 
-        pathFunctionsList = new Parametric(xFunc, yFunc);
+        if(xFuncs.size() != yFuncs.size()) {
+            try {
+                throw new Exception("Functions for parametric path of enemy function mismatch");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            for(int i = 0; i < xFuncs.size() - 1; i++) {
+                q
+            }
+        }
 
 
-    }
-
-    public float getXCoord(float t) {
-        return pathFunctionsList.getX(t);
     }
 
     public float getYCoord(float t) {
-        return pathFunctionsList.getY(t);
+
     }
 
 }

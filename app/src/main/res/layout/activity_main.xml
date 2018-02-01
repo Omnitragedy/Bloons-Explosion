@@ -6,12 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.rc211.myapplication.MainActivity">
 
-    <view class="com.example.rc211.myapplication.MainActivity$GameView"
-        id="@+id/gameView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
@@ -19,6 +13,4 @@
         android:src="@android:drawable/alert_dark_frame"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 </android.support.constraint.ConstraintLayout>
