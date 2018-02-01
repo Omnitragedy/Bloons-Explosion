@@ -11,12 +11,12 @@ import java.util.function.Function;
 
 public class Parametric {
 
-    Function<Float, Float> xFunc;
-    Function<Float, Float> yFunc;
+    private Function<Float, Float> xFunc;
+    private Function<Float, Float> yFunc;
 
     public Parametric(Function<Float, Float> xFunc, Function<Float, Float> yFunc) {
-        xFunc = this.xFunc;
-        yFunc = this.yFunc;
+        this.xFunc = xFunc;
+        this.yFunc = yFunc;
     }
 
     public float getX(float t) {

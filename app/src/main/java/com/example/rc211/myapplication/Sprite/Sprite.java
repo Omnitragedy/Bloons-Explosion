@@ -27,8 +27,6 @@ public class Sprite {
     }
 
     public void update(Canvas canvas, int newX, int newY) {
-
-
         x = newX;
         y = newY;
 
