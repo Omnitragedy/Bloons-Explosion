@@ -25,7 +25,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        // TODO Auto-generated constructor stubt
+        // TODO Auto-generated constructor stub
     }
 
     public GameView(Context context) {
