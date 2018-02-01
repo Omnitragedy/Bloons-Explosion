@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.rc211.myapplication.Enemy.EnemyTypes;
 import com.example.rc211.myapplication.Enemy.GenericEnemy;
 import com.example.rc211.myapplication.Enemy.Specialized_Enemies.Grunt;
+import com.example.rc211.myapplication.GameView;
 import com.example.rc211.myapplication.GeneralUtilities.Parametric;
 import com.example.rc211.myapplication.MainActivity;
 
@@ -26,10 +27,10 @@ public class GameEventScheduler {
     private static int tempEnemiesCount;        //used to simply store how many enemies have been spawned in a single
                                                 //call of the scheduleAndRunEnemySpawn method
 
-    private MainActivity.GameView gameView;
+    private GameView gameView;
     private Context context;
 
-    public GameEventScheduler(MainActivity.GameView gameView, Context context) {
+    public GameEventScheduler(GameView gameView, Context context) {
         enemyWavesList = new ArrayList<>();
 
         this.gameView = gameView;

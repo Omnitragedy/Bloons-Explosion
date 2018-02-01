@@ -46,7 +46,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     private ImageView ImageView;
     private Handler handler = new Handler();
 
-    private ArrayList<ArrayList<GenericEnemy>> enemyWavesList;
+    public static ArrayList<ArrayList<GenericEnemy>> enemyWavesList;
 
     private static int screenWidth, screenHeight;
 
@@ -122,84 +122,84 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         return true;
     }
 
-    public class GameView extends SurfaceView implements Runnable {
-
-        private Thread gvThread = null;
-        private SurfaceHolder holder;
-        private boolean isItOKToDraw = false;
-
-        public GameView(Context context) {
-            super(context);
-            holder = super.getHolder();
-            System.out.print("");
-
-            holder.addCallback(new SurfaceHolder.Callback() {
-                @Override
-                public void surfaceCreated(SurfaceHolder holder) {
-
-                }
-
-                @Override
-                public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-                }
-
-                @Override
-                public void surfaceDestroyed(SurfaceHolder holder) {
-
-                }
-            });
-        }
-
-
-        public SurfaceHolder getHolder() {
-            return super.getHolder();
-        }
-
-        @Override
-        public void run() {
-            while(isItOKToDraw) {
-                //perform canvas draw
-
-//                if the holder surface is invalid, recheck to see if still ok to draw
-                if(holder.getSurface().isValid()) {
-                    System.out.println(holder.getSurface().isValid());
-                    Canvas canvas = holder.lockCanvas();
-                    canvas.drawARGB(255, 91,192,222);
-                    System.out.println("draw enemy");   /////////////////////////////////
-                    for (GenericEnemy ge : enemyWavesList.get(enemyWavesList.size()-1)) {
-                        ge.moveEnemyBody();
-                    }
-                    holder.unlockCanvasAndPost(canvas);continue;
-                }
-
-
-            }
-        }
-
-
-        public void pause() {
-            isItOKToDraw = false;
-            while (true) {
-                try {
-                    gvThread.join();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-            }
-
-            gvThread = null;
-        }
-
-        public void resume() {
-            isItOKToDraw = true;
-            gvThread = new Thread(this);
-            gvThread.start();
-        }
-
-
-    }
+//    public static class GameView extends SurfaceView implements Runnable {
+//
+//        private Thread gvThread = null;
+//        private SurfaceHolder holder;
+//        private boolean isItOKToDraw = false;
+//
+//        public GameView(Context context) {
+//            super(context);
+//            holder = super.getHolder();
+//            System.out.print("");
+//
+//            holder.addCallback(new SurfaceHolder.Callback() {
+//                @Override
+//                public void surfaceCreated(SurfaceHolder holder) {
+//
+//                }
+//
+//                @Override
+//                public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+//
+//                }
+//
+//                @Override
+//                public void surfaceDestroyed(SurfaceHolder holder) {
+//
+//                }
+//            });
+//        }
+//
+//
+//        public SurfaceHolder getHolder() {
+//            return super.getHolder();
+//        }
+//
+//        @Override
+//        public void run() {
+//            while(isItOKToDraw) {
+//                //perform canvas draw
+//
+////                if the holder surface is invalid, recheck to see if still ok to draw
+//                if(holder.getSurface().isValid()) {
+//                    System.out.println(holder.getSurface().isValid());
+//                    Canvas canvas = holder.lockCanvas();
+//                    canvas.drawARGB(255, 91,192,222);
+//                    System.out.println("draw enemy");   /////////////////////////////////
+//                    for (GenericEnemy ge : enemyWavesList.get(enemyWavesList.size()-1)) {
+//                        ge.moveEnemyBody();
+//                    }
+//                    holder.unlockCanvasAndPost(canvas);continue;
+//                }
+//
+//
+//            }
+//        }
+//
+//
+//        public void pause() {
+//            isItOKToDraw = false;
+//            while (true) {
+//                try {
+//                    gvThread.join();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                break;
+//            }
+//
+//            gvThread = null;
+//        }
+//
+//        public void resume() {
+//            isItOKToDraw = true;
+//            gvThread = new Thread(this);
+//            gvThread.start();
+//        }
+//
+//
+//    }
 
 
     private final class ChoiceTouchListener implements OnTouchListener {

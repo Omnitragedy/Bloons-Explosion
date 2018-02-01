@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.rc211.myapplication.MainActivity">
 
-    <!--<com.example.rc211.myapplication.MainActivity.GameView-->
-        <!--android:id="@+id/gameView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
+    <view class="com.example.rc211.myapplication.MainActivity$GameView"
+        id="@+id/gameView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
     <ImageView
         android:id="@+id/imageView"
