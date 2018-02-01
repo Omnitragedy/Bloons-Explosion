@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.example.rc211.myapplication.Enemy.GenericEnemy;
+import com.example.rc211.myapplication.GameView;
 import com.example.rc211.myapplication.GeneralUtilities.Parametric;
 import com.example.rc211.myapplication.MainActivity;
 import com.example.rc211.myapplication.R;
@@ -18,7 +19,7 @@ public class Grunt extends GenericEnemy{
 
 
 
-    public Grunt(MainActivity.GameView gameView, Context context, int x, int y, int width, int height, Parametric pathFunc) {
+    public Grunt(GameView gameView, Context context, int x, int y, int width, int height, Parametric pathFunc) {
         super(gameView, context, x, y, width, height, pathFunc);
     }
 

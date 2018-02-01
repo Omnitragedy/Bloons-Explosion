@@ -2,6 +2,7 @@ package com.example.rc211.myapplication;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -16,6 +17,16 @@ public class GameView extends SurfaceView implements Runnable {
     private Thread gvThread = null;
     private SurfaceHolder holder;
     private boolean isItOKToDraw = false;
+
+    public GameView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        // TODO Auto-generated constructor stub
+    }
+
+    public GameView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        // TODO Auto-generated constructor stub
+    }
 
     public GameView(Context context) {
         super(context);

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.widget.ProgressBar;
 
+import com.example.rc211.myapplication.GameView;
 import com.example.rc211.myapplication.GeneralUtilities.Parametric;
 import com.example.rc211.myapplication.MainActivity;
 import com.example.rc211.myapplication.Sprite.Sprite;
@@ -15,7 +16,7 @@ import com.example.rc211.myapplication.Sprite.Sprite;
 
 public abstract class GenericEnemy {
 
-    private MainActivity.GameView gameView;
+    private GameView gameView;
 
     private ProgressBar enemyProgressBar;
 
@@ -29,7 +30,7 @@ public abstract class GenericEnemy {
     private long initT;
     private long dT;
 
-    public GenericEnemy(MainActivity.GameView gameView, Context context, int x, int y, int width, int height, Parametric pathFunc) {
+    public GenericEnemy(GameView gameView, Context context, int x, int y, int width, int height, Parametric pathFunc) {
         initX = x;
         initY = y;
         this.width = width;
