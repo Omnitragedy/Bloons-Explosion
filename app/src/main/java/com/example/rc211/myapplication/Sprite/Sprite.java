@@ -14,6 +14,7 @@ import com.example.rc211.myapplication.MainActivity;
 public class Sprite {
 
     private int x, y;
+    private int xSpeed, ySpeed;
     private int height, width;
     private Bitmap b;
     private GameView gameView;
@@ -25,12 +26,18 @@ public class Sprite {
         this.width = width;
         this.x = x;
         this.y = y;
+        xSpeed = 0;
+        ySpeed = 0;
     }
 
-    public void update(Canvas canvas, int newX, int newY) {
-        x = newX;
-        y = newY;
+    private void update() {
+        x += xSpeed;
+        y += ySpeed;
+    }
 
+    public void onDraw(Canvas canvas) {
+
+        update();
         Rect dst = new Rect(x, y, x + width, y + height);
 
         canvas.drawBitmap(b, null, dst, null);
