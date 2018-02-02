@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import com.example.rc211.myapplication.GameView;
 import com.example.rc211.myapplication.MainActivity;
 
 /**
@@ -17,9 +16,9 @@ public class Sprite {
     private int xSpeed, ySpeed;
     private int height, width;
     private Bitmap b;
-    private GameView gameView;
+    private MainActivity.GameView gameView;
 
-    public Sprite(GameView gameView, Bitmap body, int x, int y, int width, int height) {
+    public Sprite(MainActivity.GameView gameView, Bitmap body, int x, int y, int width, int height) {
         b = body;
         this.gameView = gameView;
         this.height = height;

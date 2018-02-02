@@ -1,22 +1,26 @@
 package com.example.rc211.myapplication.Enemy;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.widget.ProgressBar;
 
-import com.example.rc211.myapplication.GameView;
 import com.example.rc211.myapplication.GeneralUtilities.Parametric;
 import com.example.rc211.myapplication.MainActivity;
+import com.example.rc211.myapplication.R;
 import com.example.rc211.myapplication.Sprite.Sprite;
+
+import java.util.HashMap;
 
 /**
  * Created by Saurav on 1/23/2018.
  */
 
-public abstract class GenericEnemy {
+public class GenericEnemy {
 
-    private GameView gameView;
+    private MainActivity.GameView gameView;
 
     private ProgressBar enemyProgressBar;
 
@@ -30,7 +34,11 @@ public abstract class GenericEnemy {
     private long initT;
     private long dT;
 
-    public GenericEnemy(GameView gameView, Context context, int x, int y, int width, int height, Parametric pathFunc) {
+    private EnemyTypes enemyType;
+
+    private HashMap<EnemyTypes, Bitmap> typeToSpriteMap = new HashMap<>();
+
+    public GenericEnemy(MainActivity.GameView gameView, Context context, int x, int y, int width, int height, Parametric pathFunc, EnemyTypes enemyType) {
         initX = x;
         initY = y;
         this.width = width;
@@ -39,7 +47,11 @@ public abstract class GenericEnemy {
         this.pathFunc = pathFunc;
         initT = System.currentTimeMillis();
 
-        enemySprite = new Sprite(gameView, getBitmapSprite(), x, y, width, height);
+        enemySprite = new Sprite(gameView, getBitmapSprite(enemyType), x, y, width, height);
+        this.enemyType = enemyType;
+
+        typeToSpriteMap.put(EnemyTypes.GRUNT, BitmapFactory.decodeResource(context.getResources(), R.drawable.red_bloon));
+
 
 
         enemyProgressBar = new ProgressBar(context);
@@ -51,7 +63,7 @@ public abstract class GenericEnemy {
      * @param newX
      * @param newY
      */
-    private void update(float newX, float newY) {
+    private void update(float newX, float newY, Canvas canvas, EnemyTypes enemyType) {
         //change progress bar location code
 
         //change progress bar value code
@@ -60,30 +72,32 @@ public abstract class GenericEnemy {
 
 
         //change enemy location code
-        Canvas c = gameView.getHolder().lockCanvas();
-        c.drawBitmap(this.getBitmapSprite(), newX, newY, null);
-        gameView.getHolder().unlockCanvasAndPost(c);
+
+        //assume that the canvas was locked before this method was called
+//        Bitmap bp = getBitmapSprite(enemyType);
+        canvas.drawBitmap(getBitmapSprite(enemyType), newX, newY, null);
+//        System.out.print("");
     }
 
     /**
      * Updates the theoretical location of the enemy and calls the update method for the enemy
      */
-    public void moveEnemyBody() {
+    public void moveEnemyBody(Canvas canvas, EnemyTypes enemyType) {
         this.dT = System.currentTimeMillis() - initT;
 
 
         //call last
-        update(initX + pathFunc.getX(this.dT), initY + pathFunc.getY(this.dT));
+        update(initX + pathFunc.getX(this.dT), initY + pathFunc.getY(this.dT), canvas, enemyType);
     }
-
-    /**
-     * How the enemy's sprite should be determined
-     */
-    public abstract void setEnemyBody();
 
     /**
      * Return the data for enemy's sprite
      * @return enemy sprite
      */
-    public abstract Bitmap getBitmapSprite();
+    public Bitmap getBitmapSprite(EnemyTypes enemyType) {
+        if(enemyType.equals(EnemyTypes.GRUNT))
+            return typeToSpriteMap.get(EnemyTypes.GRUNT);
+
+        return typeToSpriteMap.get(EnemyTypes.GRUNT);
+    }
 }
