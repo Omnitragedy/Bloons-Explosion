@@ -253,15 +253,12 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
         public void pause() {
             isItOKToDraw = false;
-            while (true) {
                 try {
                     gvThread.join();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                break;
-            }
-
+            //ur dumbass wrote a while true loop that only runs once cuz i break out rite after the first loop. boi wtf u doing with yer life
             gvThread = null;
         }
 
