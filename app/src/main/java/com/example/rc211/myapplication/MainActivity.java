@@ -253,8 +253,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                         GruntEnemyEnemyWavesList.get(GruntEnemyEnemyWavesList.size()-1).get(i).moveEnemyBody(canvas, EnemyTypes.GRUNT); //list guaranteed to be GenericEnemy enemies
 
                     for(Tower t : towersList)
-                        for(Bullet b : t.bullets)
-                            b.update(1f/30);
+                        t.updateAim(canvas);
                     holder.unlockCanvasAndPost(canvas);
                 }
 

@@ -2,6 +2,7 @@ package com.example.rc211.myapplication.Tower;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Point;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -9,7 +10,9 @@ import android.widget.ImageView;
 
 import com.example.rc211.myapplication.Enemy.GenericEnemy;
 import com.example.rc211.myapplication.Game.Bullet;
+import com.example.rc211.myapplication.MainActivity;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -28,6 +31,9 @@ public class Tower extends ImageView {
 
     public ArrayList<Bullet> bullets;
 
+
+    public Context context;
+
     public void setCost(int cost) {this.cost = cost;}
 
     public Tower(Context context){
@@ -35,6 +41,8 @@ public class Tower extends ImageView {
 
         this.cost = cost;
         bullets = new ArrayList<>();
+
+        this.context = context;
     }
 
     public Tower(Context context, @Nullable AttributeSet attrs) {
@@ -42,6 +50,8 @@ public class Tower extends ImageView {
 
         this.cost = cost;
         bullets = new ArrayList<>();
+
+        this.context = context;
     }
 
     public Tower(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int cost) {
@@ -49,6 +59,8 @@ public class Tower extends ImageView {
 
         this.cost = cost;
         bullets = new ArrayList<>();
+
+        this.context = context;
     }
 
     public Tower(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes, int cost) {
@@ -56,17 +68,20 @@ public class Tower extends ImageView {
 
         this.cost = cost;
         bullets = new ArrayList<>();
+
+        this.context = context;
     }
 
     private void shoot(float angle) {
-        bullets.add(new);
+        bullets.add(new Bullet(angle, this.getX(), this.getY(), context, ));
     }
 
     /**
      * Update the list of enemies in the bounds of the tower
      */
-    public void updateAim(ArrayList<ArrayList<GenericEnemy>> enemyWavesList) {
+    public void updateAim(Canvas canvas) {
         GenericEnemy enemyToAim = null;
+        ArrayList<ArrayList<GenericEnemy>> enemyWavesList = MainActivity.GruntEnemyEnemyWavesList;
 
         for(int i = enemyWavesList.size() - 1; i >= 0; i--) {
             for (int j = enemyWavesList.get(i).size() - 1; j >= 0; j--) {
@@ -74,7 +89,6 @@ public class Tower extends ImageView {
                         + Math.pow(enemyWavesList.get(i).get(j).Y - this.getY(), 2) <= rangeSquared) {
                     enemyToAim = enemyWavesList.get(i).get(j);
                 }
-
             }
         }
 
@@ -90,5 +104,9 @@ public class Tower extends ImageView {
 
 
         shoot(angleToShoot);
+
+
+        for(Bullet bullet : bullets)
+            bullet.update(1f/30);
     }
 }
