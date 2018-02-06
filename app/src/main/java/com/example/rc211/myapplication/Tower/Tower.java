@@ -31,6 +31,8 @@ public class Tower extends ImageView {
 
     public ArrayList<Bullet> bullets;
 
+    private Canvas canvas;
+
 
     public Context context;
 
@@ -73,7 +75,7 @@ public class Tower extends ImageView {
     }
 
     private void shoot(float angle) {
-        bullets.add(new Bullet(angle, this.getX(), this.getY(), context, ));
+        bullets.add(new Bullet(angle, this.getX(), this.getY(), context, canvas));
     }
 
     /**
@@ -107,6 +109,6 @@ public class Tower extends ImageView {
 
 
         for(Bullet bullet : bullets)
-            bullet.update(1f/30);
+            bullet.update(1.0f/30);
     }
 }
