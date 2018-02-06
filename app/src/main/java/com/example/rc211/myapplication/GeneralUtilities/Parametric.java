@@ -35,7 +35,7 @@ public class Parametric {
         pts = new ArrayList<>(screenWidth * 4/200);
 
 
-        drawPath(0);
+//        drawPath(0);
     }
 
     public float getX(float t) {
@@ -47,29 +47,29 @@ public class Parametric {
     }
 
     /**
-     * Make array of points to be drawn for parametric to be rendered. DOES NOT ACTUALLY RETURN ARRAY
-     * (must call getPath separately)
-     */
-    public float[] getPath() {
-        float[] tempPts = new float[pts.size()];
-        for (int i = 0; i < pts.size() ; i++) {
-            tempPts[i] = pts.get(i);
-        }
-
-        return tempPts;
-    }
-
-    private void drawPath(int t) {
-        int step = 200;
-
-        if(getX(t+step) <= screenWidth) {
-            pts.add(getX(t));
-            pts.add(getY(t));
-            pts.add(getX(t + step));
-            pts.add(getY(t + step));
-            drawPath(t + step);
-        } else
-            return;
-    }
+//     * Make array of points to be drawn for parametric to be rendered. DOES NOT ACTUALLY RETURN ARRAY
+//     * (must call getPath separately)
+//     */
+//    public float[] getPath() {
+//        float[] tempPts = new float[pts.size()];
+//        for (int i = 0; i < pts.size() ; i++) {
+//            tempPts[i] = pts.get(i);
+//        }
+//
+//        return tempPts;
+//    }
+//
+//    private void drawPath(int t) {
+//        int step = 200;
+//
+//        if(getX(t+step) <= screenWidth) {
+//            pts.add(getX(t));
+//            pts.add(getY(t));
+//            pts.add(getX(t + step));
+//            pts.add(getY(t + step));
+//            drawPath(t + step);
+//        } else
+//            return;
+//    }
 
 }

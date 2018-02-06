@@ -38,6 +38,10 @@ public class GenericEnemy {
 
     private HashMap<EnemyTypes, Bitmap> typeToSpriteMap = new HashMap<>();
 
+
+
+    public int X, Y;
+
     public GenericEnemy(MainActivity.GameView gameView, Context context, int x, int y, int width, int height, Parametric pathFunc, EnemyTypes enemyType) {
         initX = x;
         initY = y;
@@ -50,6 +54,7 @@ public class GenericEnemy {
         enemySprite = new Sprite(gameView, getBitmapSprite(enemyType), x, y, width, height);
         this.enemyType = enemyType;
 
+        Bitmap redBloonBM = BitmapFactory.decodeResource(context.getResources(), R.drawable.red_bloon);
         typeToSpriteMap.put(EnemyTypes.GRUNT, BitmapFactory.decodeResource(context.getResources(), R.drawable.red_bloon));
 
 
@@ -75,6 +80,9 @@ public class GenericEnemy {
 
         //assume that the canvas was locked before this method was called
 //        Bitmap bp = getBitmapSprite(enemyType);
+
+        X = (int) newX;
+        Y = (int) newY;
         canvas.drawBitmap(getBitmapSprite(enemyType), newX, newY, null);
 //        System.out.print("");
     }

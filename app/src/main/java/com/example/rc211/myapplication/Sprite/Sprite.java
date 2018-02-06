@@ -35,11 +35,9 @@ public class Sprite {
     }
 
     public void onDraw(Canvas canvas) {
-
         update();
         Rect dst = new Rect(x, y, x + width, y + height);
 
         canvas.drawBitmap(b, null, dst, null);
     }
-
 }
