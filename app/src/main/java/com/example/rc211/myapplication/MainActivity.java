@@ -37,7 +37,6 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
     private GameView gameView;
 
-    private ImageView img;
     private int _xDelta;
     private int _yDelta;
     private ProgressBar progressBar;
@@ -60,7 +59,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //assign screen width and height
+        //store screen width and height
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         screenWidth = dm.widthPixels;
@@ -76,12 +75,14 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         GruntEnemyEnemyWavesList = gamehandler.getGenericEnemyEnemiesList(); //assigns reference of the enemies list from the gameHandler to this object
         paths = new ArrayList<>();
 
-        img = (ImageView) findViewById(R.id.imageView);
-
-//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(150, 150);
-//        img.setLayoutParams(layoutParams);
-        img.setOnTouchListener(new ChoiceTouchListener());
-
+        ImageView t1 = (ImageView) findViewById(R.id.t1);
+        t1.setOnTouchListener(new ChoiceTouchListener());
+        ImageView t2 = (ImageView) findViewById(R.id.t2);
+        t2.setOnTouchListener(new ChoiceTouchListener());
+        ImageView t3 = (ImageView) findViewById(R.id.t3);
+        t3.setOnTouchListener(new ChoiceTouchListener());
+        ImageView t4 = (ImageView) findViewById(R.id.t4);
+        t4.setOnTouchListener(new ChoiceTouchListener());
 
 
 
@@ -99,8 +100,8 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         };
         Parametric enemyParametric = new Parametric(xFunc, yFunc, 0, screenHeight / 2f, screenWidth);
         paths.add(enemyParametric);
-        gamehandler.scheduleAndRunEnemySpawn(20,1000, EnemyTypes.GRUNT,
-                screenHeight / 5, screenHeight / 5, enemyParametric);
+        gamehandler.scheduleAndRunEnemySpawn(20,1500, EnemyTypes.GRUNT,
+                screenHeight / 4, screenHeight / 4, enemyParametric);
 
 
     }

@@ -50,6 +50,7 @@ public class GenericEnemy {
         enemySprite = new Sprite(gameView, getBitmapSprite(enemyType), x, y, width, height);
         this.enemyType = enemyType;
 
+        Bitmap redBloonBM = BitmapFactory.decodeResource(context.getResources(), R.drawable.red_bloon);
         typeToSpriteMap.put(EnemyTypes.GRUNT, BitmapFactory.decodeResource(context.getResources(), R.drawable.red_bloon));
 
 
