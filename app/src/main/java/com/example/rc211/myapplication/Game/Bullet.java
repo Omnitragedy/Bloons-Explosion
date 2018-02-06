@@ -6,9 +6,29 @@ package com.example.rc211.myapplication.Game;
 
 public class Bullet {
 
-    private double angle = 0;
+    private final double angle;
 
-    public Bullet (double count){
-        this.angle = count;
+    private double xStep, yStep;
+
+    private float x, y;
+
+    public Bullet (double angle, int x, int y){
+        this.angle = angle;
+
+        xStep = 500*Math.cos(angle);
+        yStep = 500*Math.sin(angle);
+
+        this.x = x;
+        this.y = y;
     }
+
+    public void update(float dT) {
+        x += xStep * dT;
+        y += yStep * dT;
+    }
+
+
+
+
+
 }

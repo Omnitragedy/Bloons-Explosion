@@ -20,8 +20,10 @@ import android.view.View.OnTouchListener;
 
 import com.example.rc211.myapplication.Enemy.EnemyTypes;
 import com.example.rc211.myapplication.Enemy.GenericEnemy;
+import com.example.rc211.myapplication.Game.Bullet;
 import com.example.rc211.myapplication.Game.GameEventScheduler;
 import com.example.rc211.myapplication.GeneralUtilities.Parametric;
+import com.example.rc211.myapplication.Tower.Tower;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -49,6 +51,10 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
     private static int screenWidth, screenHeight;
 
+
+    public static ArrayList<Tower> towersList = new ArrayList<>();
+
+
     public MainActivity() {
         mHandler = new Handler();
     }
@@ -75,6 +81,8 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         GruntEnemyEnemyWavesList = gamehandler.getGenericEnemyEnemiesList(); //assigns reference of the enemies list from the gameHandler to this object
         paths = new ArrayList<>();
 
+
+        towersList.clear();
         ImageView t1 = (ImageView) findViewById(R.id.t1);
         t1.setOnTouchListener(new ChoiceTouchListener());
         ImageView t2 = (ImageView) findViewById(R.id.t2);
@@ -83,7 +91,10 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         t3.setOnTouchListener(new ChoiceTouchListener());
         ImageView t4 = (ImageView) findViewById(R.id.t4);
         t4.setOnTouchListener(new ChoiceTouchListener());
-
+        towersList.add((Tower) t1);
+        towersList.add((Tower) t2);
+        towersList.add((Tower) t3);
+        towersList.add((Tower) t4);
 
 
         Function<Float, Float> xFunc = new Function<Float, Float>() {
@@ -237,13 +248,13 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                     Canvas canvas = holder.lockCanvas();
                     canvas.drawARGB(255, 91,192,222);
 
-                    for(int i = 0; i < paths.size() - 1; i++) {
-                        canvas.drawLines(paths.get(i).getPath(), linePaint);
-                    }
                     System.out.println("draw enemy");   /////////////////////////////////
                     for(int i = 0; i < GruntEnemyEnemyWavesList.get(GruntEnemyEnemyWavesList.size()-1).size() - 1; i++)
                         GruntEnemyEnemyWavesList.get(GruntEnemyEnemyWavesList.size()-1).get(i).moveEnemyBody(canvas, EnemyTypes.GRUNT); //list guaranteed to be GenericEnemy enemies
 
+                    for(Tower t : towersList)
+                        for(Bullet b : t.bullets)
+                            b.update(1f/30);
                     holder.unlockCanvasAndPost(canvas);
                 }
 
